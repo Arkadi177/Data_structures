@@ -48,7 +48,7 @@ void postorder(TreeNode<T>* root){
 }
 template <class T>
 void postorder_parent(TreeNode<T>* root){
-    TreeNode<T>* new_root = new TreeNode<T>(root);
+    TreeNode<T>* new_root = root;
     while(new_root)
     {
         while(new_root->left){
@@ -66,7 +66,6 @@ void postorder_parent(TreeNode<T>* root){
             }
         }
     }
-    delete new_root;
 }
 template <class T>
 void deleteTree(TreeNode<T>* node) {
