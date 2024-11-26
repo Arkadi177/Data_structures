@@ -76,6 +76,15 @@ void dfs(TreeNode* root)
     dfs(root->right);
 }
 
+void deleteTree(TreeNode* node) {
+    if (node == nullptr) {
+        return;
+    }
+    deleteTree(node->left);
+    deleteTree(node->right);
+    delete node;
+}
+
 class Tree{
     TreeNode* nodes;
 public:
@@ -140,7 +149,7 @@ public:
     }
 
     ~Tree(){
-        delete nodes;
+        delete deleteTree(nodes);
     }
 };
 //insert(40); insert(20); insert(10); insert(30);
