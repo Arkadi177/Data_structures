@@ -7,10 +7,10 @@ struct TreeNode{
     TreeNode<T>* right;
     TreeNode<T>* parent;
     explicit TreeNode(T data)
-    : m_data{data} , left(nullptr) , right(nullptr) , parent(nullptr)
+            : m_data{data} , left(nullptr) , right(nullptr) , parent(nullptr)
     {}
     explicit TreeNode()
-    : left(nullptr) , right(nullptr) , parent(nullptr)
+            : left(nullptr) , right(nullptr) , parent(nullptr)
     {}
     explicit TreeNode(TreeNode<T>* other)
     {
@@ -48,25 +48,25 @@ void postorder(TreeNode<T>* root){
 }
 template <class T>
 void postorder_parent(TreeNode<T>* root){
-   TreeNode<T>* new_root = new TreeNode<T>(root);
-   while(new_root)
-   {
-       while(new_root->left){
-           new_root = new_root->left;
-       }
-       std::cout << new_root->m_data << " ";
-       if(new_root->parent && new_root->parent->right != nullptr && new_root != new_root->parent->right)
-       {
-           new_root = new_root->parent->right;
-           new_root->parent->left = nullptr;
-       }else{
-           new_root = new_root->parent;
-           if(new_root) {
-               new_root->left = nullptr;
-           }
-       }
-   }
-   delete new_root;
+    TreeNode<T>* new_root = new TreeNode<T>(root);
+    while(new_root)
+    {
+        while(new_root->left){
+            new_root = new_root->left;
+        }
+        std::cout << new_root->m_data << " ";
+        if(new_root->parent && new_root->parent->right != nullptr && new_root != new_root->parent->right)
+        {
+            new_root = new_root->parent->right;
+            new_root->parent->left = nullptr;
+        }else{
+            new_root = new_root->parent;
+            if(new_root) {
+                new_root->left = nullptr;
+            }
+        }
+    }
+    delete new_root;
 }
 template <class T>
 void deleteTree(TreeNode<T>* node) {
