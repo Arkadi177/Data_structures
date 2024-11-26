@@ -149,7 +149,7 @@ public:
     }
 
     ~Tree(){
-        delete deleteTree(nodes);
+        deleteTree(nodes);
     }
 };
 //insert(40); insert(20); insert(10); insert(30);
