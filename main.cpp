@@ -12,7 +12,7 @@ struct TreeNode{
     explicit TreeNode()
             : left(nullptr) , right(nullptr) , parent(nullptr)
     {}
-    explicit TreeNode(TreeNode<T>* other)
+    explicit TreeNode(const TreeNode<T>* other)
     {
         this->m_data = other->m_data;
         this->left = other->left;
@@ -47,22 +47,21 @@ void postorder(TreeNode<T>* root){
     std::cout << std::endl;
 }
 template <class T>
-void postorder_parent(TreeNode<T>* root){
-    TreeNode<T>* new_root = root;
-    while(new_root)
-    {
-        while(new_root->left){
+void postorder_parent(const TreeNode<T>* root){
+    TreeNode<T>* new_root = root->left;
+    TreeNode<T>* prev;
+    while(new_root) {
+        while (prev != new_root && new_root->left) {
             new_root = new_root->left;
         }
         std::cout << new_root->m_data << " ";
-        if(new_root->parent && new_root->parent->right != nullptr && new_root != new_root->parent->right)
-        {
+        if (new_root->parent && new_root->parent->right != nullptr && new_root != new_root->parent->right) {
             new_root = new_root->parent->right;
-            new_root->parent->left = nullptr;
-        }else{
+            prev = new_root->parent->left;
+        } else {
             new_root = new_root->parent;
-            if(new_root) {
-                new_root->left = nullptr;
+            if (new_root) {
+                prev = new_root;
             }
         }
     }
